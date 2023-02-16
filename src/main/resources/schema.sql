@@ -22,7 +22,9 @@ CREATE TABLE Armas
 );
 
 CREATE TABLE PersonajeArma(
-
+PersonajeArmaID serial integer PRIMARY KEY,
+PersonajeID serial integer,
+ArmaID serial integer,
 );
 
 
