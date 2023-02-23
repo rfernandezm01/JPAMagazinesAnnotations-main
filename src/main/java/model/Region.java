@@ -6,7 +6,7 @@ import java.io.Serializable;
 @Entity
 @Access(AccessType.FIELD)
 @Table(name = "autors")
-public class Author implements Serializable {
+public class Region implements Serializable {
   @Id
   @Column(name = "id_autor")
   int authorId;
@@ -19,7 +19,7 @@ public class Author implements Serializable {
   @Column(name = "actiu")
   boolean active;
 
-  public Author(int authorId, String name, String nationality, String birthYear,
+  public Region(int authorId, String name, String nationality, String birthYear,
                 boolean active) {
     super();
     this.birthYear = birthYear;
@@ -29,7 +29,7 @@ public class Author implements Serializable {
     this.authorId = authorId;
   }
 
-  public Author() {
+  public Region() {
 
   }
 

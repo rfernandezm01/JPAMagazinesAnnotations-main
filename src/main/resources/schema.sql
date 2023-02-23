@@ -42,11 +42,11 @@ CREATE TABLE Personaje
   Sexo varying(20),
   CONSTRAINT connectRegion PRIMARY KEY (RegionID),
   CONSTRAINT connectArmas FOREIGN KEY (ArmaID)
-      REFERENCES revistes (id_revista) MATCH SIMPLE
+      REFERENCES Armas (ArmaID) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION,
-  CONSTRAINT fk_articles_autors FOREIGN KEY (id_autor)
-      REFERENCES autors (id_autor) MATCH SIMPLE
+  CONSTRAINT fk_Personaje_Region FOREIGN KEY (RegionID)
+      REFERENCES Region (RegionID) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION,
-  CONSTRAINT uk_articles UNIQUE (titol)  
+  CONSTRAINT uk_Personaje UNIQUE (Nombre)
 );
 

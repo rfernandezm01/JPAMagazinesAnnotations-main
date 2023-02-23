@@ -1,12 +1,8 @@
 package controller;
 
-import model.Article;
-import model.Author;
+import model.Personaje;
+import model.Region;
 import model.Magazine;
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -65,7 +61,7 @@ public class ArticleController {
     String linea = "";
 
     List<Magazine> magazinesList = magazineController.readMagazinesFile(magazinesFile);
-    List<Author> authorList = authorController.readAuthorsFile(authorsFile);
+    List<Region> authorList = authorController.readAuthorsFile(authorsFile);
 
     while ((linea = br.readLine()) != null) {
       StringTokenizer str = new StringTokenizer(linea, ",");
@@ -78,7 +74,7 @@ public class ArticleController {
         creationDate = dateFormat.parse(str.nextToken());
         publishable = Boolean.parseBoolean(str.nextToken());
 
-        magazinesList.get(magazineId - 1).addArticle(new Article(articleId, title, creationDate, publishable, authorList.get(authorId - 1)));
+        magazinesList.get(magazineId - 1).addArticle(new Personaje(articleId, title, creationDate, publishable, authorList.get(authorId - 1)));
 
       } catch (ParseException e) {
 
@@ -91,7 +87,7 @@ public class ArticleController {
     return magazinesList;
   }
 
-  public List<Article>  readArticlesFile(String articlesFile, String authorsFile) throws IOException {
+  public List<Personaje>  readArticlesFile(String articlesFile, String authorsFile) throws IOException {
     int articleId, magazineId, authorId;
     String title;
     Date creationDate;
@@ -100,8 +96,8 @@ public class ArticleController {
 
     BufferedReader br = new BufferedReader(new FileReader(articlesFile));
     String linea = "";
-    List<Author> authorList = authorController.readAuthorsFile(authorsFile);
-    List<Article> articlesList = new ArrayList<Article>();
+    List<Region> authorList = authorController.readAuthorsFile(authorsFile);
+    List<Personaje> articlesList = new ArrayList<Personaje>();
 
     while ((linea = br.readLine()) != null) {
       StringTokenizer str = new StringTokenizer(linea, ",");
@@ -114,7 +110,7 @@ public class ArticleController {
         creationDate = dateFormat.parse(str.nextToken());
         publishable = Boolean.parseBoolean(str.nextToken());
 
-        articlesList.add(new Article(articleId, title, creationDate, publishable, authorList.get(authorId - 1)));
+        articlesList.add(new Personaje(articleId, title, creationDate, publishable, authorList.get(authorId - 1)));
 
       } catch (ParseException e) {
 
@@ -128,7 +124,7 @@ public class ArticleController {
   }
 
   /* Method to CREATE an Article in the database */
-  public void addArticle(Article article) {
+  public void addArticle(Personaje article) {
     EntityManager em = entityManagerFactory.createEntityManager();
     em.getTransaction().begin();
     em.merge(article);
@@ -140,9 +136,9 @@ public class ArticleController {
   public void listArticles() {
     EntityManager em = entityManagerFactory.createEntityManager();
     em.getTransaction().begin();
-    List<Article> result = em.createQuery("from Article", Article.class)
+    List<Personaje> result = em.createQuery("from Article", Personaje.class)
         .getResultList();
-    for (Article article : result) {
+    for (Personaje article : result) {
       System.out.println(article.toString());
     }
     em.getTransaction().commit();
@@ -153,7 +149,7 @@ public class ArticleController {
   public void updateArticle(Integer articleId) {
     EntityManager em = entityManagerFactory.createEntityManager();
     em.getTransaction().begin();
-    Article article = (Article) em.find(Article.class, articleId);
+    Personaje article = (Personaje) em.find(Personaje.class, articleId);
     em.merge(article);
     em.getTransaction().commit();
     em.close();
@@ -163,7 +159,7 @@ public class ArticleController {
   public void deleteArticle(Integer articleId) {
     EntityManager em = entityManagerFactory.createEntityManager();
     em.getTransaction().begin();
-    Article article = (Article) em.find(Article.class, articleId);
+    Personaje article = (Personaje) em.find(Personaje.class, articleId);
     em.remove(article);
     em.getTransaction().commit();
     em.close();

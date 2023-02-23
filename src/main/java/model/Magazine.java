@@ -3,26 +3,25 @@ package model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
 @Access(AccessType.FIELD)
-@Table(name = "revistes")
+@Table(name = "Armas")
 public class Magazine implements Serializable {
   @Id
-  @Column(name = "id_revista")
+  @Column(name = "ArmaID")
   private int magazineId;
-  @Column(name = "titol", length = 30)
+  @Column(name = "Nombre", length = 30)
   private String title;
-  @Column(name = "data_publicacio")
-  private Date publicationDate;
+  @Column(name = "TipodeArma", length = 20)
+  private String publicationDate;
 
   @OneToMany(cascade = CascadeType.ALL)
-  @JoinColumn(name = "id_revista", referencedColumnName = "id_revista")
-  private List<Article> articles = new ArrayList<Article>();
+  @JoinColumn(name = "ArmaID", referencedColumnName = "ArmaID")
+  private List<Personaje> articles = new ArrayList<Personaje>();
 
-  public Magazine(int magazineId, String title, Date publicationDate) {
+  public Magazine(int magazineId, String title, String publicationDate) {
     super();
     this.title = title;
     this.publicationDate = publicationDate;
@@ -41,11 +40,11 @@ public class Magazine implements Serializable {
     this.title = title;
   }
 
-  public Date getPublicationDate() {
+  public String getPublicationDate() {
     return publicationDate;
   }
 
-  public void setPublicationDate(Date publicationDate) {
+  public void setPublicationDate(String publicationDate) {
     this.publicationDate = publicationDate;
   }
 
@@ -57,31 +56,31 @@ public class Magazine implements Serializable {
     this.magazineId = magazineId;
   }
 
-  public void addArticle(Article art) {
+  public void addArticle(Personaje art) {
     articles.add(art);
   }
 
-  public Article getArticle(int i) {
+  public Personaje getArticle(int i) {
     return articles.get(i);
   }
 
-  public List<Article> getArticles() {
+  public List<Personaje> getArticles() {
     return articles;
   }
 
-  public void setArticles(List<Article> articles) {
+  public void setArticles(List<Personaje> articles) {
     this.articles = articles;
   }
 
 
   @Override
   public String toString() {
-    String result = "Revista [id_revista=" + magazineId + ",titol=" + title + ", data_publicacio="
+    String result = "Armas [ArmaID=" + magazineId + ",Nombre=" + title + ", TipodeArma="
         + publicationDate.toString() + "]";
 
-    result += "\n Llista d'articles: [ \n";
+    result += "\n Llista de Armas: [ \n";
 
-    for (Article a : articles) {
+    for (Personaje a : articles) {
       result += "\t";
       result += a.toString();
       result += "\n";

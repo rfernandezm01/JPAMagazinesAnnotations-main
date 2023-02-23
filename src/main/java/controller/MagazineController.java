@@ -1,11 +1,6 @@
 package controller;
 
-import model.Article;
 import model.Magazine;
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -14,7 +9,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -46,8 +40,8 @@ public class MagazineController {
   public List<Magazine> readMagazinesFile(String filename) throws IOException {
     int magazineId;
     String title;
-    Date publicationDate;
-    DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+    String publicationDate;
+    DateFormat dateFormat = new SimpleDateFormat("Reflejo de las Tinieblas");
     List<Magazine> magazinesList = new ArrayList();
 
     BufferedReader br = new BufferedReader(new FileReader(filename));
@@ -56,15 +50,9 @@ public class MagazineController {
       StringTokenizer str = new StringTokenizer(linea, ",");
       magazineId = Integer.parseInt(str.nextToken());
       title = str.nextToken();
+      publicationDate = str.nextToken();
 
-      try {
-        publicationDate = dateFormat.parse(str.nextToken());
-        magazinesList.add(new Magazine(magazineId, title, publicationDate));
-
-      } catch (ParseException e) {
-        System.err.println("Errada format data al fitxer");
-        e.printStackTrace();
-      }
+      magazinesList.add(new Magazine(magazineId, title, publicationDate));
 
     }
     br.close();

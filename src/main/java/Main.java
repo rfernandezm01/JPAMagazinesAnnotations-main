@@ -14,8 +14,6 @@ import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
 import view.Menu;
 
 import javax.persistence.EntityManagerFactory;
@@ -99,21 +97,21 @@ public class Main {
           // magazineController.printMagazines(magazineController.readMagazinesFile("src/main/resources/revistes.txt"));
           // magazineController.printMagazines();
 
-          List<Author> authors = authorController.readAuthorsFile("src/main/resources/autors.txt");
+          List<Region> authors = authorController.readAuthorsFile("src/main/resources/autors.txt");
           List<Magazine> magazines = articleController.readArticlesFile("src/main/resources/articles.txt", "src/main/resources/revistes.txt", "src/main/resources/autors.txt");
-          List<Article> articles = articleController.readArticlesFile("src/main/resources/articles.txt", "src/main/resources/autors.txt");
+          List<Personaje> articles = articleController.readArticlesFile("src/main/resources/articles.txt", "src/main/resources/autors.txt");
 
           System.out.println("Revistes llegides des del fitxer");
           for (int i = 0; i < magazines.size(); i++) {
             System.out.println(magazines.get(i).toString()+"\n");
             for (int j = 0; j < magazines.get(i).getArticles().size(); j++) {
-              Author author = magazines.get(i).getArticles().get(j).getAuthor();
+              Region author = magazines.get(i).getArticles().get(j).getAuthor();
               authorController.addAuthor(author);
 
               System.out.println("EL AUTOR:");
               System.out.println(author);
 
-              Article article = magazines.get(i).getArticles().get(j);
+              Personaje article = magazines.get(i).getArticles().get(j);
               article.setAuthor(author);
 
               System.out.println("EL ARTICLE:");
