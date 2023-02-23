@@ -8,7 +8,7 @@ import java.util.List;
 @Entity
 @Access(AccessType.FIELD)
 @Table(name = "Armas")
-public class Magazine implements Serializable {
+public class Armas implements Serializable {
   @Id
   @Column(name = "ArmaID")
   private int magazineId;
@@ -21,14 +21,14 @@ public class Magazine implements Serializable {
   @JoinColumn(name = "ArmaID", referencedColumnName = "ArmaID")
   private List<Personaje> articles = new ArrayList<Personaje>();
 
-  public Magazine(int magazineId, String title, String publicationDate) {
+  public Armas(int magazineId, String title, String publicationDate) {
     super();
     this.title = title;
     this.publicationDate = publicationDate;
     this.magazineId = magazineId;
   }
 
-  public Magazine() {
+  public Armas() {
     super();
   }
 

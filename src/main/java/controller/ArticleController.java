@@ -2,7 +2,7 @@ package controller;
 
 import model.Personaje;
 import model.Region;
-import model.Magazine;
+import model.Armas;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -49,7 +49,7 @@ public class ArticleController {
    *                     llistaRevistes
    *                     .getRevista(i).getArticle(j).getAutor()<>nil</br>
    */
-  public List<Magazine> readArticlesFile(String articlesFile, String magazinesFile, String authorsFile)
+  public List<Armas> readArticlesFile(String articlesFile, String magazinesFile, String authorsFile)
       throws IOException {
     int articleId, magazineId, authorId;
     String title;
@@ -60,7 +60,7 @@ public class ArticleController {
     BufferedReader br = new BufferedReader(new FileReader(articlesFile));
     String linea = "";
 
-    List<Magazine> magazinesList = magazineController.readMagazinesFile(magazinesFile);
+    List<Armas> magazinesList = magazineController.readMagazinesFile(magazinesFile);
     List<Region> authorList = authorController.readAuthorsFile(authorsFile);
 
     while ((linea = br.readLine()) != null) {

@@ -62,7 +62,7 @@ public class Main {
   }
 
   public static void main(String[] args) {
-    ArrayList<Magazine> revistes = new ArrayList();
+    ArrayList<Armas> revistes = new ArrayList();
 
     ConnectionFactory connectionFactory = ConnectionFactory.getInstance();
     Connection c = connectionFactory.connect();
@@ -98,7 +98,7 @@ public class Main {
           // magazineController.printMagazines();
 
           List<Region> authors = authorController.readAuthorsFile("src/main/resources/autors.txt");
-          List<Magazine> magazines = articleController.readArticlesFile("src/main/resources/articles.txt", "src/main/resources/revistes.txt", "src/main/resources/autors.txt");
+          List<Armas> magazines = articleController.readArticlesFile("src/main/resources/articles.txt", "src/main/resources/revistes.txt", "src/main/resources/autors.txt");
           List<Personaje> articles = articleController.readArticlesFile("src/main/resources/articles.txt", "src/main/resources/autors.txt");
 
           System.out.println("Revistes llegides des del fitxer");
