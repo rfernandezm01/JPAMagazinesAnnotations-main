@@ -11,21 +11,27 @@ import java.util.List;
 public class Armas implements Serializable {
   @Id
   @Column(name = "ArmaID")
-  private int magazineId;
+  private int ArmaID;
   @Column(name = "Nombre", length = 30)
-  private String title;
+  private String NombreArma;
   @Column(name = "TipodeArma", length = 20)
-  private String publicationDate;
+  private String TipodeArmas;
+  @Column(name = "Numerodeestrellas")
+  private int NumerodeestrellasArma;
+  @Column(name = "PuntosAtaque")
+  private int PuntosAtaque;
 
   @OneToMany(cascade = CascadeType.ALL)
   @JoinColumn(name = "ArmaID", referencedColumnName = "ArmaID")
-  private List<Personaje> articles = new ArrayList<Personaje>();
+  private List<Personaje> personajes = new ArrayList<Personaje>();
 
-  public Armas(int magazineId, String title, String publicationDate) {
+  public Armas(int ArmaID, String NombreArma, String TipodeArmas, int NumertodeestrellasArma, int PuntosAtaque) {
     super();
-    this.title = title;
-    this.publicationDate = publicationDate;
-    this.magazineId = magazineId;
+    this.NombreArma = NombreArma;
+    this.TipodeArmas = TipodeArmas;
+    this.ArmaID = ArmaID;
+    this.NumerodeestrellasArma = NumertodeestrellasArma;
+    this.PuntosAtaque = PuntosAtaque;
   }
 
   public Armas() {
@@ -76,7 +82,7 @@ public class Armas implements Serializable {
   @Override
   public String toString() {
     String result = "Armas [ArmaID=" + magazineId + ",Nombre=" + title + ", TipodeArma="
-        + publicationDate.toString() + "]";
+        + TipodeArmas + ", NumerodeestrellasArma=" + NumerodeestrellasArma + ", PuntosAtaque=" + PuntosAtaque.toString() + "]";
 
     result += "\n Llista de Armas: [ \n";
 
