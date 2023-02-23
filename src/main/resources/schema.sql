@@ -25,6 +25,8 @@ CREATE TABLE PersonajeArma(
 PersonajeArmaID serial integer PRIMARY KEY,
 PersonajeID serial integer,
 ArmaID serial integer,
+CONSTRAINT connectPersonaje PRIMARY KEY (PersonajeID),
+CONSTRAINT connectArmas PRIMARY KEY (ArmasID),
 );
 
 
