@@ -23,7 +23,7 @@ public class Armas implements Serializable {
 
   @OneToMany(cascade = CascadeType.ALL)
   @JoinColumn(name = "ArmaID", referencedColumnName = "ArmaID")
-  private List<Personaje> personajes = new ArrayList<Personaje>();
+  public Personaje personaje;
 
   public Armas(int ArmaID, String NombreArma, String TipodeArmas, int NumertodeestrellasArma, int PuntosAtaque) {
     super();
@@ -38,55 +38,70 @@ public class Armas implements Serializable {
     super();
   }
 
-  public String getTitle() {
-    return title;
+  public int getArmaID() {
+    return ArmaID;
   }
 
-  public void setTitle(String title) {
-    this.title = title;
+  public void setArmaID(int armaID) {
+    this.ArmaID = armaID;
   }
 
-  public String getPublicationDate() {
-    return publicationDate;
+  public String getNombreArma() {
+    return NombreArma;
   }
 
-  public void setPublicationDate(String publicationDate) {
-    this.publicationDate = publicationDate;
+  public void setNombreArma(String nombredearma) {
+    this.NombreArma = nombredearma;
   }
 
-  public int getMagazineId() {
-    return magazineId;
+  public String getTipodeArmas() {
+    return TipodeArmas;
   }
 
-  public void setMagazineId(int magazineId) {
-    this.magazineId = magazineId;
+  public void setTipodeArmas(String tiposdearmas) {
+    this.TipodeArmas = tiposdearmas;
   }
 
-  public void addArticle(Personaje art) {
-    articles.add(art);
+  public int getNumerodeestrellasArma() {
+    return NumerodeestrellasArma;
   }
 
-  public Personaje getArticle(int i) {
-    return articles.get(i);
+  public void setNumerodeestrellasArma(int numerodeestrellasArma) {
+    this.NumerodeestrellasArma = numerodeestrellasArma;
   }
 
-  public List<Personaje> getArticles() {
-    return articles;
+  public int getPuntosAtaque() {
+    return PuntosAtaque;
   }
 
-  public void setArticles(List<Personaje> articles) {
-    this.articles = articles;
+  public void setPuntosAtaque(int puntosAtaque) {
+    this.PuntosAtaque = puntosAtaque;
+  }
+
+  public Personaje getPersonaje() {
+    return personaje;
+  }
+
+  //public List<Personaje> getArticles() {
+  //return articles;
+  //}
+
+  public void setPersonaje(Personaje personaje) {
+    this.personaje = personaje;
   }
 
 
   @Override
   public String toString() {
-    String result = "Armas [ArmaID=" + magazineId + ",Nombre=" + title + ", TipodeArma="
-        + TipodeArmas + ", NumerodeestrellasArma=" + NumerodeestrellasArma + ", PuntosAtaque=" + PuntosAtaque.toString() + "]";
+    //String result =
+    return "Armas [ArmaID=" + ArmaID + ",Nombre=" + NombreArma + ", TipodeArma="
+            + TipodeArmas + ", NumerodeestrellasArma=" + NumerodeestrellasArma + ", PuntosAtaque=" + PuntosAtaque + ", Personaje=" + personaje.toString() + "]";
+  }
+}
 
-    result += "\n Llista de Armas: [ \n";
+    /*result += "\n Llista de Armas: [ \n";
 
-    for (Personaje a : articles) {
+    /* for (Personaje a : Personaje) {
       result += "\t";
       result += a.toString();
       result += "\n";
@@ -98,3 +113,4 @@ public class Armas implements Serializable {
   }
 
 }
+     */

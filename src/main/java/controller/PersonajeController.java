@@ -15,19 +15,20 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-public class ArticleController {
+public class PersonajeController {
+  //Article
 
   private Connection connection;
   private EntityManagerFactory entityManagerFactory;
 
-  private MagazineController magazineController = new MagazineController(connection);
-  private AuthorController authorController = new AuthorController(connection);
+  private ArmasController magazineController = new ArmasController(connection);
+  private RegionController authorController = new RegionController(connection);
 
-  public ArticleController(Connection connection) {
+  public PersonajeController(Connection connection) {
     this.connection = connection;
   }
 
-  public ArticleController(Connection connection, EntityManagerFactory entityManagerFactory) {
+  public PersonajeController(Connection connection, EntityManagerFactory entityManagerFactory) {
     this.connection = connection;
     this.entityManagerFactory = entityManagerFactory;
   }

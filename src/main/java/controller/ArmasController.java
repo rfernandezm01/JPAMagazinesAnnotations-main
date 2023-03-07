@@ -12,16 +12,17 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class MagazineController {
+//Maginaze
+public class ArmasController {
 
   private Connection connection;
   private EntityManagerFactory entityManagerFactory;
 
-  public MagazineController(Connection connection) {
+  public ArmasController(Connection connection) {
     this.connection = connection;
   }
 
-  public MagazineController(Connection connection, EntityManagerFactory entityManagerFactory) {
+  public ArmasController(Connection connection, EntityManagerFactory entityManagerFactory) {
     this.connection = connection;
     this.entityManagerFactory = entityManagerFactory;
   }

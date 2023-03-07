@@ -1,6 +1,6 @@
 package controller;
 
-import model.Region;
+import model.Author;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -11,25 +11,25 @@ import java.util.*;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
-public class AuthorController {
-
+public class RegionController {
+//Author
   private Connection connection;
   private EntityManagerFactory entityManagerFactory;
 
-  public AuthorController(Connection connection) {
+  public RegionController(Connection connection) {
     this.connection = connection;
   }
 
-  public AuthorController(Connection connection, EntityManagerFactory entityManagerFactory) {
+  public RegionController(Connection connection, EntityManagerFactory entityManagerFactory) {
     this.connection = connection;
     this.entityManagerFactory = entityManagerFactory;
   }
 
-  public List<Region> readAuthorsFile(String filename) throws IOException {
+  public List<Author> readAuthorsFile(String filename) throws IOException {
     int id;
     String name, year, country;
     boolean active;
-    List<Region> authorsList = new ArrayList<Region>();
+    List<Author> authorsList = new ArrayList<Author>();
 
     BufferedReader br = new BufferedReader(new FileReader(filename));
     String linea = "";
@@ -41,7 +41,7 @@ public class AuthorController {
       country = str.nextToken();
       active = Boolean.parseBoolean(str.nextToken());
       // System.out.println(id + name + country + year + active);
-      authorsList.add(new Region(id, name, country, year, active));
+      authorsList.add(new Author(id, name, country, year, active));
 
     }
     br.close();
@@ -49,7 +49,7 @@ public class AuthorController {
     return authorsList;
   }
 
-  public void printAutors(ArrayList<Region> authorsList) {
+  public void printAutors(ArrayList<Author> authorsList) {
     for (int i = 0; i < authorsList.size(); i++) {
       System.out.println(authorsList.get(i).toString());
     }
@@ -57,10 +57,10 @@ public class AuthorController {
 
 
   /* Method to CREATE an Autor in the database */
-  public void addAuthor(Region author) {
+  public void addAuthor(Author author) {
     EntityManager em = entityManagerFactory.createEntityManager();
     em.getTransaction().begin();
-    Region authotExists = (Region) em.find(Region.class, author.getAuthorId());
+    Author authotExists = (Author) em.find(Author.class, author.getAuthorId());
     if (authotExists == null ){
       System.out.println("insert autor");
       em.persist(author);
@@ -74,9 +74,9 @@ public class AuthorController {
   public void listAuthors() {
     EntityManager em = entityManagerFactory.createEntityManager();
     em.getTransaction().begin();
-    List<Region> result = em.createQuery("from Author", Region.class)
+    List<Author> result = em.createQuery("from Author", Author.class)
         .getResultList();
-    for (Region author : result) {
+    for (Author author : result) {
       System.out.println(author.toString());
     }
     em.getTransaction().commit();
@@ -87,7 +87,7 @@ public class AuthorController {
   public void updateAutor(Integer authorId, boolean active) {
     EntityManager em = entityManagerFactory.createEntityManager();
     em.getTransaction().begin();
-    Region author = (Region) em.find(Region.class, authorId);
+    Author author = (Author) em.find(Author.class, authorId);
     author.setActive(active);
     em.merge(author);
     em.getTransaction().commit();
@@ -98,7 +98,7 @@ public class AuthorController {
   public void deleteAuthor(Integer authorId) {
     EntityManager em = entityManagerFactory.createEntityManager();
     em.getTransaction().begin();
-    Region author = (Region) em.find(Region.class, authorId);
+    Author author = (Author) em.find(Author.class, authorId);
     em.remove(author);
     em.getTransaction().commit();
     em.close();

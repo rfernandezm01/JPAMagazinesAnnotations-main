@@ -3,9 +3,8 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
-import controller.ArticleController;
-import controller.AuthorController;
-import controller.MagazineController;
+import controller.PersonajeController;
+import controller.ArmasController;
 import database.ConnectionFactory;
 import model.*;
 import org.hibernate.HibernateException;
@@ -73,8 +72,8 @@ public class Main {
 
 
     AuthorController authorController = new AuthorController(c, entityManagerFactory);
-    ArticleController articleController = new ArticleController(c, entityManagerFactory);
-    MagazineController magazineController = new MagazineController(c, entityManagerFactory);
+    PersonajeController articleController = new PersonajeController(c, entityManagerFactory);
+    ArmasController magazineController = new ArmasController(c, entityManagerFactory);
 
     Menu menu = new Menu();
     int opcio;
