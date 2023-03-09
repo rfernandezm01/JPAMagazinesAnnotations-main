@@ -34,7 +34,7 @@ public class Armas implements Serializable {
     this.PuntosAtaque = PuntosAtaque;
   }
 
-  public Armas() {
+  public Armas(int magazineId, String title, String publicationDate) {
     super();
   }
 
@@ -97,6 +97,9 @@ public class Armas implements Serializable {
     return "Armas [ArmaID=" + ArmaID + ",Nombre=" + NombreArma + ", TipodeArma="
             + TipodeArmas + ", NumerodeestrellasArma=" + NumerodeestrellasArma + ", PuntosAtaque=" + PuntosAtaque + ", Personaje=" + personaje.toString() + "]";
   }
+
+  public void addPersonaje(Personaje personaje) {
+  }
 }
 
     /*result += "\n Llista de Armas: [ \n";
@@ -114,3 +117,4 @@ public class Armas implements Serializable {
 
 }
      */
+
