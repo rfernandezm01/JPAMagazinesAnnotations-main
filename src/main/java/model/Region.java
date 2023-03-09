@@ -5,64 +5,83 @@ import java.io.Serializable;
 
 @Entity
 @Access(AccessType.FIELD)
-@Table(name = "autors")
+@Table(name = "Region")
 public class Region implements Serializable {
   @Id
-  @Column(name = "id_autor")
-  int authorId;
+  @Column(name = "RegionID")
+  int Regionid;
   @Column(name = "nom", length = 30)
-  String name;
-  @Column(name = "nacionalitat", length = 12)
-  String nationality;
-  @Column(name = "any_naixement", length = 4)
-  String birthYear;
+  String Nomregion;
+  @Column(name = "Habitantes")
+  int Habitantes;
+  @Column(name = "Elemento", length = 20)
+  String Elemento;
+  @Column(name = "Nombrearconte", length = 30)
+  String Nombrearconte;
+  @Column(name = "Mundo", length = 20)
+  String Mundo;
   @Column(name = "actiu")
   boolean active;
 
-  public Region(int authorId, String name, String nationality, String birthYear,
-                boolean active) {
+  public Region(int Regionid, String Nomregion, int Habitantes, String Elemento,
+                String Nombrearconte, String Mundo,boolean active) {
     super();
-    this.birthYear = birthYear;
-    this.name = name;
-    this.nationality = nationality;
+    this.Regionid = Regionid;
+    this.Nomregion = Nomregion;
+    this.Habitantes = Habitantes;
+    this.Elemento = Elemento;
+    this.Nombrearconte = Nombrearconte;
+    this.Mundo = Mundo;
     this.active = active;
-    this.authorId = authorId;
+  }
+  @OneToMany(cascade = CascadeType.ALL)
+  @JoinColumn(name = "RegionID", referencedColumnName = "RegionID")
+  public Personaje personaje;
+
+  public Region(int id, String name, String country, String year, boolean active) {
+
   }
 
-  public Region() {
-
+  public int getRegionid() {
+    return Regionid;
   }
 
-  public int getAuthorId() {
-    return authorId;
+  public void setRegionid(int regionid) {
+    this.Regionid = regionid;
   }
 
-  public void setAuthorId(int authorId) {
-    this.authorId = authorId;
+  public String getNomregion() {
+    return Nomregion;
   }
 
-  public String getBirthYear() {
-    return birthYear;
+  public void setNomregion(String nomregion) {
+    this.Nomregion = nomregion;
   }
 
-  public void setBirthYear(String birthYear) {
-    this.birthYear = birthYear;
+  public int getHabitantes() { return Habitantes; }
+
+  public void setHabitantes(int habitantes) {
+    this.Habitantes = habitantes;
   }
 
-  public String getName() {
-    return name;
+  public String getElemento() {
+    return Elemento;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setElemento(String elemento) {
+    this.Elemento = elemento;
   }
 
-  public String getNationality() {
-    return nationality;
+  public String getNombrearconte() {
+    return Nombrearconte;
   }
 
-  public void setNationality(String nationality) {
-    this.nationality = nationality;
+  public void setNombrearconte(String nombrearconte) {
+    this.Nombrearconte = nombrearconte;
+  }
+
+  public String getMundo() {
+    return Mundo;
   }
 
   public boolean isActive() {
@@ -73,11 +92,26 @@ public class Region implements Serializable {
     this.active = active;
   }
 
+  public void setMundo(String mundo) {
+    this.Mundo = mundo;
+  }
+  public Personaje getPersonaje() {
+    return personaje;
+  }
+
+  //public List<Personaje> getArticles() {
+  //return articles;
+  //}
+
+  public void setPersonaje(Personaje personaje) {
+    this.personaje = personaje;
+  }
+
+
   @Override
   public String toString() {
-    return "Autor [id_autor=" + authorId + ", nom=" + name + ", any_naixement=" + birthYear
-        + ", nacionalitat=" + nationality + ", actiu=" + active
-        + "]";
+    return "Region [RegionID=" + Regionid + ", Nomregion=" + Nomregion + ", Habitantes=" + Habitantes
+        + ", Elemento=" + Elemento + ", Nombrearconte=" + Nombrearconte + ", Mundo=" + Mundo +", actiu=" + active +", Personaje=" + personaje.toString() + "]";
   }
 
 
