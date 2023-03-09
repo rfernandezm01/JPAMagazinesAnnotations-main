@@ -1,0 +1,10 @@
+PersonajeID,Nombre,Numeroestrellas,TipodeArma,Elemento,Sexo,Región,ArmaID,RegiónID
+1, Targtalia, 5, Arco, Hydro, Masculino, Sheznaaya, 2, 7
+2, Venti, 5, Arco, Anemo, Masculino, Monsdtadt, 2, 1
+3, Zhongli, 5, Lanza, Geo, Masculino, Liyue, 5, 2
+4, Shogun Raiden, 5,Lanza, Electro, Femenino, Inazuma, 5, 3
+5, Nahida, 5, Catalizador, Dendro, Femenino, Sumeru, 3, 4
+6, Focalors, 5, Espada, Hydro, Femenino, Fontaine, 1, 5
+7, Wargana, 5, Mandoble, Pyro, Femenino, Natlan, 4, 6
+8, Zarina, 5, Lanza, Cryo, Femenino, Sheznaaya, 5, 7
+9. Bennett, 4, Espada, Pyro, Masculino, Monsdtadt, 1, 1
