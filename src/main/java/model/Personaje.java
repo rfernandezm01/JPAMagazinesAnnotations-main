@@ -2,6 +2,7 @@ package model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Access(AccessType.FIELD)
@@ -34,12 +35,12 @@ public class Personaje implements Serializable {
     this.region = region;
   }
 
-  public Personaje() {
+  public Personaje(int articleId, String title, Date creationDate, boolean publishable, Region region) {
     super();
 
   }
 
-  public int getPersonajeID() {
+  public int getPersonajeID(int i) {
     return PersonajeID;
   }
 
