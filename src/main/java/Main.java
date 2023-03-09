@@ -5,6 +5,7 @@ import java.util.List;
 
 import controller.PersonajeController;
 import controller.ArmasController;
+import controller.RegionController;
 import database.ConnectionFactory;
 import model.*;
 import org.hibernate.HibernateException;
@@ -71,7 +72,7 @@ public class Main {
     //sessionObj = buildSessionFactory().openSession();
 
 
-    AuthorController authorController = new AuthorController(c, entityManagerFactory);
+    RegionController authorController = new RegionController(c, entityManagerFactory);
     PersonajeController articleController = new PersonajeController(c, entityManagerFactory);
     ArmasController magazineController = new ArmasController(c, entityManagerFactory);
 
@@ -103,15 +104,15 @@ public class Main {
           System.out.println("Revistes llegides des del fitxer");
           for (int i = 0; i < magazines.size(); i++) {
             System.out.println(magazines.get(i).toString()+"\n");
-            for (int j = 0; j < magazines.get(i).getArticles().size(); j++) {
-              Region author = magazines.get(i).getArticles().get(j).getAuthor();
+            for (int j = 0; j < magazines.get(i).getPersonaje().getPersonajeID(1); j++) {
+              Region author = magazines.get(i).getPersonaje().getRegion();
               authorController.addAuthor(author);
 
               System.out.println("EL AUTOR:");
               System.out.println(author);
 
-              Personaje article = magazines.get(i).getArticles().get(j);
-              article.setAuthor(author);
+              Personaje article = magazines.get(i).getPersonaje().region.getPersonaje();
+              article.setRegion(author);
 
               System.out.println("EL ARTICLE:");
               System.out.println(article);
@@ -206,3 +207,4 @@ public class Main {
 
 
 */
+
