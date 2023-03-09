@@ -21,15 +21,6 @@ CREATE TABLE Armas
   CONSTRAINT connectPersonaje PRIMARY KEY (PersonajeID),
 );
 
-CREATE TABLE PersonajeArma(
-PersonajeArmaID serial integer PRIMARY KEY,
-PersonajeID serial integer,
-ArmaID serial integer,
-CONSTRAINT connectPersonaje PRIMARY KEY (PersonajeID),
-CONSTRAINT connectArmas PRIMARY KEY (ArmasID),
-);
-
-
 CREATE TABLE Personaje
 (
   RegionID serial integer,
@@ -49,4 +40,5 @@ CREATE TABLE Personaje
       ON UPDATE NO ACTION ON DELETE NO ACTION,
   CONSTRAINT uk_Personaje UNIQUE (Nombre)
 );
+
 
