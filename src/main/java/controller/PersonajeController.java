@@ -75,7 +75,7 @@ public class PersonajeController {
         creationDate = dateFormat.parse(str.nextToken());
         publishable = Boolean.parseBoolean(str.nextToken());
 
-        magazinesList.get(magazineId - 1).addArticle(new Personaje(articleId, title, creationDate, publishable, authorList.get(authorId - 1)));
+        magazinesList.get(magazineId - 1).addPersonaje(new Personaje(articleId, title, creationDate, publishable, authorList.get(authorId - 1)));
 
       } catch (ParseException e) {
 
@@ -137,7 +137,7 @@ public class PersonajeController {
   public void listArticles() {
     EntityManager em = entityManagerFactory.createEntityManager();
     em.getTransaction().begin();
-    List<Personaje> result = em.createQuery("from Article", Personaje.class)
+    List<Personaje> result = em.createQuery("from Personaje", Personaje.class)
         .getResultList();
     for (Personaje article : result) {
       System.out.println(article.toString());
@@ -168,3 +168,4 @@ public class PersonajeController {
 
 
 }
+
