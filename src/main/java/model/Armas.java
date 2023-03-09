@@ -2,119 +2,99 @@ package model;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 @Entity
 @Access(AccessType.FIELD)
-@Table(name = "Armas")
-public class Armas implements Serializable {
+@Table(name = "Personaje")
+public class Personaje implements Serializable {
   @Id
-  @Column(name = "ArmaID")
-  private int ArmaID;
+  @Column(name = "PersonajeID")
+  int PersonajeID;
   @Column(name = "Nombre", length = 30)
-  private String NombreArma;
+  String NombrePersonaje;
   @Column(name = "TipodeArma", length = 20)
-  private String TipodeArmas;
-  @Column(name = "Numerodeestrellas")
-  private int NumerodeestrellasArma;
-  @Column(name = "PuntosAtaque")
-  private int PuntosAtaque;
+  String TipodeArma;
+  @Column(name = "Elemento", length = 20)
+  String Elemento;
+  @Column(name = "Sexo", length = 20)
+  String Sexo;
 
-  @OneToMany(cascade = CascadeType.ALL)
-  @JoinColumn(name = "ArmaID", referencedColumnName = "ArmaID")
-  public Personaje personaje;
+  @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  @JoinColumn(name = "RegionID")
+  public Region region;
 
-  public Armas(int ArmaID, String NombreArma, String TipodeArmas, int NumertodeestrellasArma, int PuntosAtaque) {
+  public Personaje(int PersonajeID, String NombrePersonaje, String TipodeArma,
+                   String Elemento, String Sexo , Region region) {
     super();
-    this.NombreArma = NombreArma;
-    this.TipodeArmas = TipodeArmas;
-    this.ArmaID = ArmaID;
-    this.NumerodeestrellasArma = NumertodeestrellasArma;
-    this.PuntosAtaque = PuntosAtaque;
+    this.PersonajeID = PersonajeID;
+    this.NombrePersonaje = NombrePersonaje;
+    this.TipodeArma = TipodeArma;
+    this.Elemento = Elemento;
+    this.Sexo = Sexo;
+    this.region = region;
   }
 
-  public Armas(int magazineId, String title, String publicationDate) {
+  public Personaje(int articleId, String title, Date creationDate, boolean publishable, Region region) {
     super();
+
   }
 
-  public int getArmaID() {
-    return ArmaID;
+  public int getPersonajeID(int i) {
+    return PersonajeID;
   }
 
-  public void setArmaID(int armaID) {
-    this.ArmaID = armaID;
+  public void setPersonajeID(int personajeID) {
+    this.PersonajeID = personajeID;
   }
 
-  public String getNombreArma() {
-    return NombreArma;
+  public String getNombrePersonaje() {return NombrePersonaje;}
+
+  public void setNombrePersonaje(String nombrepersonaje) {
+    this.NombrePersonaje = nombrepersonaje;
   }
 
-  public void setNombreArma(String nombredearma) {
-    this.NombreArma = nombredearma;
+  public String getTipodeArma() {
+    return TipodeArma;
   }
 
-  public String getTipodeArmas() {
-    return TipodeArmas;
+  public void setTipodeArma(String tipodeArma) {
+    this.TipodeArma = tipodeArma;
   }
 
-  public void setTipodeArmas(String tiposdearmas) {
-    this.TipodeArmas = tiposdearmas;
+  public String getElemento() {
+    return Elemento;
   }
 
-  public int getNumerodeestrellasArma() {
-    return NumerodeestrellasArma;
+  public void setElemento(String elemento) {
+    this.Elemento = elemento;
   }
 
-  public void setNumerodeestrellasArma(int numerodeestrellasArma) {
-    this.NumerodeestrellasArma = numerodeestrellasArma;
+  public String getSexo() {
+    return Sexo;
   }
 
-  public int getPuntosAtaque() {
-    return PuntosAtaque;
+  public void setSexo(String sexo) {this.Sexo = sexo;}
+
+  public Region getRegion() {
+    return region;
   }
 
-  public void setPuntosAtaque(int puntosAtaque) {
-    this.PuntosAtaque = puntosAtaque;
+  public void setRegion(Region region) {
+    this.region = region;
   }
-
-  public Personaje getPersonaje() {
-    return personaje;
-  }
-
-  //public List<Personaje> getArticles() {
-  //return articles;
-  //}
-
-  public void setPersonaje(Personaje personaje) {
-    this.personaje = personaje;
-  }
-
 
   @Override
   public String toString() {
-    //String result =
-    return "Armas [ArmaID=" + ArmaID + ",Nombre=" + NombreArma + ", TipodeArma="
-            + TipodeArmas + ", NumerodeestrellasArma=" + NumerodeestrellasArma + ", PuntosAtaque=" + PuntosAtaque + ", Personaje=" + personaje.toString() + "]";
-  }
-
-  public void addPersonaje(Personaje personaje) {
+    return "Personaje{" +
+        "PersonajeID=" + PersonajeID +
+        ", Nombre='" + NombrePersonaje + '\'' +
+        ", TipodeArma=" + TipodeArma +
+        ", Elemento=" + Elemento +
+        ", Sexo=" + Sexo +
+        ", Region=" + region.toString() +
+        '}';
   }
 }
 
-    /*result += "\n Llista de Armas: [ \n";
-
-    /* for (Personaje a : Personaje) {
-      result += "\t";
-      result += a.toString();
-      result += "\n";
-    }
-
-    result += "] \n";
-
-    return result;
-  }
-
-}
-     */
 
